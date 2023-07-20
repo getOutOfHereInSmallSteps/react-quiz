@@ -8,6 +8,7 @@ import Loader from './components/Loader';
 import Error from './components/Error';
 import StartScreen from './components/StartScreen';
 import Question from './components/Question';
+import NextButton from './components/NextButton';
 
 const initialState = {
   questions: [],
@@ -51,15 +52,17 @@ const reducer = (state, action) => {
           : state.points,
       };
     }
-    case '': {
-      return;
-    }
 
     case 'NEXT_QUESTION': {
       return {
         ...state,
-        index: ++state.index,
+        index: state.index + 1,
+        answer: null,
       };
+    }
+
+    case '': {
+      return;
     }
 
     default: {
@@ -93,11 +96,14 @@ const App = () => {
           <StartScreen numQuestions={questionsNum} dispatch={dispatch} />
         )}
         {status === 'active' && (
-          <Question
-            dispatch={dispatch}
-            activeQuestion={questions[index]}
-            answer={answer}
-          />
+          <React.Fragment>
+            <Question
+              dispatch={dispatch}
+              activeQuestion={questions[index]}
+              answer={answer}
+            />
+            <NextButton dispatch={dispatch} answer={answer} />
+          </React.Fragment>
         )}
       </Main>
     </div>
