@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Timer = () => {
-  return <div className="timer">05:00</div>;
+const Timer = ({ dispatch, secondsRemaining }) => {
+  useEffect(() => {
+    const quizTimer = () => {
+      dispatch({ type: 'TICK' });
+    };
+    const quizInterval = setInterval(quizTimer, 1_000);
+
+    return () => clearInterval(quizInterval);
+  }, []);
+
+  return <div className="timer">{secondsRemaining}</div>;
 };
 
 export default Timer;
