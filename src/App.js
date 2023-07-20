@@ -10,6 +10,7 @@ import StartScreen from './components/StartScreen';
 import Progress from './components/Progress';
 import Question from './components/Question';
 import NextButton from './components/NextButton';
+import FinishScreen from './components/FinishScreen';
 
 const initialState = {
   questions: [],
@@ -113,6 +114,12 @@ const App = () => {
             />
             <NextButton dispatch={dispatch} answer={answer} />
           </React.Fragment>
+        )}
+        {status === 'finished' && (
+          <FinishScreen
+            points={points}
+            totalPoints={totalPoints}
+          ></FinishScreen>
         )}
       </Main>
     </div>
