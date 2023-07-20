@@ -8,7 +8,7 @@
   --color-accent: #ffa94d;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Codystar&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Codystar&display=swap');
 
 * {
   margin: 0;
@@ -18,8 +18,8 @@
 
 html {
   font-size: 62.5%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -62,7 +62,7 @@ img {
 }
 
 h1 {
-  font-family: "Codystar";
+  font-family: 'Codystar';
   font-size: 5.6rem;
 }
 
@@ -101,9 +101,12 @@ h4 {
 
 progress {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
   width: 100%;
   height: 12px;
   grid-column: 1 / -1;
+  border-radius: 100px;
 }
 
 ::-webkit-progress-bar {
@@ -111,6 +114,15 @@ progress {
   border-radius: 100px;
 }
 ::-webkit-progress-value {
+  background-color: var(--color-theme);
+  border-radius: 100px;
+}
+
+::-moz-progress-inner-element {
+  background-color: var(--color-medium);
+  border-radius: 100px;
+}
+::-moz-progress-bar {
   background-color: var(--color-theme);
   border-radius: 100px;
 }
