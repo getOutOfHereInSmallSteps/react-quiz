@@ -64,7 +64,9 @@ const App = () => {
       <Main>
         {status === 'loading' && <Loader />}
         {status === 'error' && <Error />}
-        {status === 'ready' && <StartScreen numQuestions={questionsNum} />}
+        {status === 'ready' && (
+          <StartScreen numQuestions={questionsNum} dispatch={dispatch} />
+        )}
         {status === 'active' && <Question />}
       </Main>
     </div>
