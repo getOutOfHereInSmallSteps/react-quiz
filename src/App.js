@@ -40,9 +40,15 @@ const reducer = (state, action) => {
       };
     }
     case 'NEW_ANSWER': {
+      const currentQuestion = state.questions.at(state.index);
+      const isCorrectAnswer = action.payload === currentQuestion.correctOption;
+
       return {
         ...state,
         answer: action.payload,
+        points: isCorrectAnswer
+          ? state.points + currentQuestion.points
+          : state.points,
       };
     }
     case '': {
