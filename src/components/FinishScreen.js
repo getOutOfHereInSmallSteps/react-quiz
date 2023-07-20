@@ -1,13 +1,16 @@
 import React from 'react';
 
-const FinishScreen = ({ points, totalPoints }) => {
+const FinishScreen = ({ points, totalPoints, highscore }) => {
   const correctPercentage = Math.floor((points / totalPoints) * 100);
 
   return (
-    <p>
-      You scored <strong>{points}</strong> out of {totalPoints} (
-      {correctPercentage} %)
-    </p>
+    <React.Fragment>
+      <p className="result">
+        You scored <strong>{points}</strong> out of {totalPoints} (
+        {correctPercentage}%)
+      </p>
+      <p className="highscore">(Highscore: {highscore} points)</p>
+    </React.Fragment>
   );
 };
 

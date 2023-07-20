@@ -19,6 +19,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
+  highscore: 0,
 };
 
 const reducer = (state, action) => {
@@ -63,8 +64,13 @@ const reducer = (state, action) => {
       };
     }
 
-    case '': {
-      return;
+    case 'FINISH_QUIZ': {
+      return {
+        ...state,
+        status: 'finished',
+        highscore:
+          state.points > state.highscore ? state.points : state.highscore,
+      };
     }
 
     default: {
@@ -74,10 +80,8 @@ const reducer = (state, action) => {
 };
 
 const App = () => {
-  const [{ questions, status, index, answer, points }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ questions, status, index, answer, points, highscore }, dispatch] =
+    useReducer(reducer, initialState);
 
   const questionsNum = questions.length;
   const totalPoints = questions.reduce((acc, curr) => acc + curr.points, 0);
@@ -112,14 +116,20 @@ const App = () => {
               activeQuestion={questions[index]}
               answer={answer}
             />
-            <NextButton dispatch={dispatch} answer={answer} />
+            <NextButton
+              dispatch={dispatch}
+              answer={answer}
+              index={index}
+              numQuestions={questionsNum}
+            />
           </React.Fragment>
         )}
         {status === 'finished' && (
           <FinishScreen
             points={points}
             totalPoints={totalPoints}
-          ></FinishScreen>
+            highscore={highscore}
+          />
         )}
       </Main>
     </div>
