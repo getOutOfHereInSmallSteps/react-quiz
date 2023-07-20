@@ -7,6 +7,7 @@ import Main from './components/Main';
 import Loader from './components/Loader';
 import Error from './components/Error';
 import StartScreen from './components/StartScreen';
+import Question from './components/Question';
 
 const initialState = {
   questions: [],
@@ -58,6 +59,7 @@ const App = () => {
         {status === 'loading' && <Loader />}
         {status === 'error' && <Error />}
         {status === 'ready' && <StartScreen numQuestions={questionsNum} />}
+        {status === 'active' && <Question />}
       </Main>
     </div>
   );
