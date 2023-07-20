@@ -30,6 +30,12 @@ const reducer = (state, action) => {
         status: 'error',
       };
     }
+    case 'START': {
+      return {
+        ...state,
+        status: 'active',
+      };
+    }
     case '': {
       return;
     }
