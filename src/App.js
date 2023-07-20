@@ -13,6 +13,7 @@ const initialState = {
   questions: [],
   // loading, error, ready, active, finished
   status: 'loading',
+  index: 0,
 };
 
 const reducer = (state, action) => {
@@ -47,7 +48,10 @@ const reducer = (state, action) => {
 };
 
 const App = () => {
-  const [{ questions, status }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status, index }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   const questionsNum = questions.length;
 
@@ -67,7 +71,7 @@ const App = () => {
         {status === 'ready' && (
           <StartScreen numQuestions={questionsNum} dispatch={dispatch} />
         )}
-        {status === 'active' && <Question />}
+        {status === 'active' && <Question activeQuestion={questions[index]} />}
       </Main>
     </div>
   );
