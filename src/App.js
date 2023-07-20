@@ -1,9 +1,11 @@
 import React, { useEffect, useReducer } from 'react';
 
-import data from './data/questions.json';
+// import data from './data/questions.json';
 
 import Header from './components/Header';
 import Main from './components/Main';
+import Loader from './components/Loader';
+import Error from './components/Error';
 
 const initialState = {
   questions: [],
@@ -49,7 +51,11 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <Main>{status}</Main>
+      <Main>
+        {status === 'loading' && <Loader />}
+        {status === 'error' && <Error />}
+        {status === 'ready' && <></>}
+      </Main>
     </div>
   );
 };
