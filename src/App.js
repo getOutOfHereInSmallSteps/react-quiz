@@ -55,6 +55,13 @@ const reducer = (state, action) => {
       return;
     }
 
+    case 'NEXT_QUESTION': {
+      return {
+        ...state,
+        index: ++state.index,
+      };
+    }
+
     default: {
       throw new Error('Action unknown');
     }
