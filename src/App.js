@@ -10,6 +10,8 @@ import StartScreen from './components/StartScreen';
 import Progress from './components/Progress';
 import Question from './components/Question';
 import NextButton from './components/NextButton';
+import Timer from './components/Timer';
+import Footer from './components/Footer';
 import FinishScreen from './components/FinishScreen';
 
 const initialState = {
@@ -73,6 +75,15 @@ const reducer = (state, action) => {
       };
     }
 
+    case 'RESTART': {
+      return {
+        ...initialState,
+        highscore: state.highscore,
+        questions: state.questions,
+        status: 'active',
+      };
+    }
+
     default: {
       throw new Error('Action unknown');
     }
@@ -116,12 +127,16 @@ const App = () => {
               activeQuestion={questions[index]}
               answer={answer}
             />
-            <NextButton
-              dispatch={dispatch}
-              answer={answer}
-              index={index}
-              numQuestions={questionsNum}
-            />
+
+            <Footer>
+              <Timer />
+              <NextButton
+                dispatch={dispatch}
+                answer={answer}
+                index={index}
+                numQuestions={questionsNum}
+              />
+            </Footer>
           </React.Fragment>
         )}
         {status === 'finished' && (
@@ -129,6 +144,7 @@ const App = () => {
             points={points}
             totalPoints={totalPoints}
             highscore={highscore}
+            dispatch={dispatch}
           />
         )}
       </Main>

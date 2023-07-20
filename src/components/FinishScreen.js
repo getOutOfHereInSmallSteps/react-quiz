@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FinishScreen = ({ points, totalPoints, highscore }) => {
+const FinishScreen = ({ points, totalPoints, highscore, dispatch }) => {
   const correctPercentage = Math.floor((points / totalPoints) * 100);
 
   return (
@@ -10,6 +10,12 @@ const FinishScreen = ({ points, totalPoints, highscore }) => {
         {correctPercentage}%)
       </p>
       <p className="highscore">(Highscore: {highscore} points)</p>
+      <button
+        onClick={() => dispatch({ type: 'RESTART' })}
+        className="btn btn-ui"
+      >
+        Restart quiz
+      </button>
     </React.Fragment>
   );
 };
